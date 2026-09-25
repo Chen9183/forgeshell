@@ -1,0 +1,13 @@
+# ---- F. 字段切分与 IFS ----
+chk fs_default 'a b c' "$(set -- $(echo 'a b c'); echo "$*")"
+chk fs_count '3' "$(set -- $(echo 'a b c'); echo $#)"
+chk fs_tabs '2' "$(set -- $(printf 'a\tb'); echo $#)"
+chk fs_newline '2' "$(set -- $(printf 'a\nb'); echo $#)"
+chk fs_quoted_no_split '1' "$(set -- "a b"; echo $#)"
+chk fs_ifs_colon '3' "$(IFS=:; set -- $(echo 'a:b:c'); echo $#)"
+chk fs_ifs_colon_v2 'b' "$(IFS=:; set -- $(echo 'a:b:c'); echo "$2")"
+chk fs_ifs_empty '1' "$(IFS=; set -- $(echo 'a b'); echo $#)"
+chk fs_leading_ws '2' "$(set -- $(echo '  a b'); echo $#)"
+chk fs_at_preserve_ws '0' "$(set -- ''; printf '%s' "$@" | wc -c | tr -d ' ')"
+chk fs_unquoted_empty_gone '0' "$(u=; set -- $u; echo $#)"
+chk fs_dollar_star_unquoted '2' "$(set -- a b; set -- $*; echo $#)"

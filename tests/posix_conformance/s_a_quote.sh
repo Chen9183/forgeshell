@@ -1,0 +1,17 @@
+# ---- A. 引用与转义 ----
+chk q_single 'a$b' "$(echo 'a$b')"
+chk q_double 'a b' "$(echo "a b")"
+chk q_bslash '$x' "$(echo \$x)"
+chk q_dq_bslash '$x' "$(echo "\$x")"
+chk q_dq_var 'v' "$(v=v; echo "$v")"
+chk q_dq_cmdsub 'y' "$(echo "$(echo y)")"
+chk q_concat 'ab' "$(a=a; b=b; echo "$a""$b")"
+chk q_nested 'x"y' "$(echo 'x"y')"
+chk q_bs_in_dq 'a\b' "$(echo "a\b")"
+chk q_bs_nl 'ab' "$(echo ab\
+)"
+chk q_empty_arg '[]' "$(set -- ""; echo "[$1]")"
+chk q_glob_quoted '*.nomatch' "$(echo '*.nomatch')"
+chk q_tilde_lit '~' "$(echo '~')"
+chk q_dollar_only '$' "$(echo '$')"
+chk q_dq_dollar_end 'a$' "$(echo "a$")"

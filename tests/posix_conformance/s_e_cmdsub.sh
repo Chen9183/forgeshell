@@ -1,0 +1,10 @@
+# ---- E. 命令替换 ----
+chk cs_simple 'hi' "$(echo hi)"
+chk cs_trailing_nl 'hi' "$(printf 'hi\n\n\n')"
+chk cs_multiline 'a b' "$(printf 'a\nb\n' | tr '\n' ' ' | sed 's/ $//')"
+chk cs_backtick 'hi' "`echo hi`"
+chk cs_nested 'x' "$(echo "$(echo x)")"
+chk cs_in_dq 'a hi b' "$(echo "a $(echo hi) b")"
+chk cs_adjacent 'prehi' "$(echo "pre$(echo hi)")"
+chk cs_status '0' "$( $(true); echo $? )"
+chk cs_env_isolated 'orig' "$(v=orig; : "$(v=changed; echo x)"; echo $v)"
