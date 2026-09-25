@@ -108,7 +108,7 @@
     Android `webview_zygote`（uid 非 root）打不开 `/dev/null` 而 SIGABRT，
     系统上所有依赖 WebView 的 App 全部起不来。现在设权限一律走
     `src/common/safeperm.h` 的 `s2a_set_perm()`（先 `stat` 判 `S_ISREG`，非普通文件一律跳过），
-    并在输出路径不是普通文件时打一行提示。事故全过程见 s2a-事故记录-devnull-20260919.md。
+    并在输出路径不是普通文件时打一行提示。事故全过程见 docs/incident-devnull-20260919.md。
 
 【6】尚未做 / 可继续的方向
 --------------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 /* safeperm.h —— 给"路径"设权限的唯一入口：**只对普通文件动手**
  *
- * 背景（2026-09-19 事故，详见 s2a-事故记录-devnull-20260919.md）：
+ * 背景（2026-09-19 事故，详见 docs/incident-devnull-20260919.md）：
  *   s2a 曾对用户指定的输出路径无条件执行 chmod(输出, 0755)。有人为了只看 AST dump
  *   用了 `s2a -o /dev/null <脚本>`，于是 chmod 落到 /dev/null 上；而容器的 /dev 与
  *   宿主 /dev 是**同一个 inode**，宿主 /dev/null 被改成 0755 →

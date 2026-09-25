@@ -21,8 +21,8 @@ CP_SRC  := src/common/parse.c src/common/crypto.c src/compiler/main.c src/compil
 all: bin/s2a bin/s2a-s
 
 # 1) 运行时模板：纯静态 musl，带符号表，代码段基址 0x100000
-build/template.elf: $(RT_SRC) $(wildcard src/common/*.h src/runtime/*.h) build/build_template.sh
-	sh build/build_template.sh
+build/template.elf: $(RT_SRC) $(wildcard src/common/*.h src/runtime/*.h) scripts/build_template.sh
+	sh scripts/build_template.sh
 
 # 2) 把模板作为二进制 blob 链进编译器（不加壳、不压缩，符号 _binary_build_template_elf_*）
 build/template_blob.o: build/template.elf

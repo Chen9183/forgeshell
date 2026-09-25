@@ -11,14 +11,21 @@
 
 ---
 
-## 1. 构建
+## 1. 克隆与构建
 
 ```sh
+git clone https://github.com/Chen9183/forgeshell.git
+cd forgeshell
 make            # 出两个：bin/s2a（带符号）与 bin/s2a-s（strip 过，功能一致）
-make clean
+make test       # 可选：自检（发射器/前端解析/端到端编译运行/POSIX 一致性）
+./bin/s2a -h    # 看看帮助
 ```
 
 依赖：`musl-gcc`、`ld`、`upx`（**只在构建工具链时需要**；编译脚本时不需要任何外部工具）。
+`musl-gcc` 通常来自 `musl-tools` 包（Debian/Ubuntu：`apt install musl-tools upx-ucl`）。
+
+仓库里只有源码 + 两个构建输入（`assets/*.upx`），**没有构建产物**：`build/`（模板、内嵌 blob、帮助密文）与
+`bin/` 全部是 `make` 现场生成的，已在 `.gitignore` 里。整个构建约 1~2 分钟，无需联网。
 
 | 构件 | 大小 | 说明 |
 |---|---|---|

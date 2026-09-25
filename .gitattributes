@@ -1,0 +1,6 @@
+# 内嵌工具是二进制（UPX 压过的 ELF），禁止任何行尾/编码转换
+assets/*.upx binary
+*.zst binary
+
+# 默认文本
+* text=auto eol=lf

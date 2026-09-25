@@ -350,7 +350,7 @@
     chmod 落到宿主 `/dev/null`，容器 `/dev` 与宿主 `/dev` 是**同一 inode** → 宿主 `/dev/null`
     被改成 0755 → Android `webview_zygote`（非 root）打不开它而 SIGABRT → 所有 WebView App
     起不来。现在全项目设权限都走 `src/common/safeperm.h` 的 `s2a_set_perm()`（非普通文件跳过，
-    并打一行提示）。事故全过程：`s2a-事故记录-devnull-20260919.md`。
+    并打一行提示）。事故全过程：`docs/incident-devnull-20260919.md`。
 
 ---
 
