@@ -1,0 +1,9 @@
+# 构建产物
+build/
+bin/
+*.o
+*.enc
+
+# 开发期原型/试验（不入库）
+experiment/
+__pycache__/
