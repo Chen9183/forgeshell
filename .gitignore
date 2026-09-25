@@ -1,5 +1,6 @@
-# 构建产物
-build/
+# 构建产物（build/ 下除 build_template.sh 外都是生成物）
+build/*
+!build/build_template.sh
 bin/
 *.o
 *.enc
